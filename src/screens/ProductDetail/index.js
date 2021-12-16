@@ -11,6 +11,8 @@ function ProductDetail() {
     state.find((item) => item.id.toString() === id)
   );
 
+  console.log(item)
+
   const [option, setOption] = React.useState(null);
   const [quantity, setQuantity] = React.useState(0);
   const [power, setPower] = React.useState(null);
@@ -40,6 +42,9 @@ function ProductDetail() {
       }
       if (option.power) {
         obj.type = 1;
+      }
+      else {
+        obj.type = 3
       }
       obj.color = clr;
       obj.cid = arr.length + 1;
@@ -109,7 +114,7 @@ function ProductDetail() {
                     ></button>
                   ))}
                 </div>
-                <div class="flex ml-6 items-center">
+              {(option && (option.power != null || option.storage != null))  && <div class="flex ml-6 items-center">
                   <span class="mr-3">Size</span>
                   <div class="relative">
                     <select
@@ -129,7 +134,9 @@ function ProductDetail() {
                             // }
                           }
                         });
-                        if (prevItem) setQuantity(prevItem.quantity);
+                        if (prevItem){
+                          
+                          setQuantity(prevItem.quantity);}
                         if (prevItem && prevItem.quantity === option.quantity) {
                           setNotification({
                             open: true,
@@ -162,7 +169,7 @@ function ProductDetail() {
                         ))}
                     </select>
                   </div>
-                </div>
+                </div>}
 
                 <div class="flex ml-6 items-center">
                   <span class="mr-3">Quantity</span>
@@ -171,11 +178,15 @@ function ProductDetail() {
                     type="number"
                     placeholder="Quantity"
                     class="input input-bordered"
-                    disabled={power === null}
+                    disabled={
+                      (power === null) || ! (option!==null && (option['power'] ===undefined && option['storage'] === undefined)) 
+                    }
                     value={quantity}
                     onChange={(e) => {
-                      if (e.target.value <= option.quantity)
+                      if(e.target.value <= option.quantity){
+                        if(parseInt(e.target.value) >=0)
                         setQuantity(parseInt(e.target.value));
+                      }
                       else {
                         setNotification({
                           open: true,

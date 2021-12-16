@@ -60,9 +60,9 @@ function CartItem({ cart, setCart, ...props }) {
           class=" h-6 w-6 text-gray-400 text-sm border-2 border-black inline-block mt-2"
           style={{ backgroundColor: item.color }}
         ></span>
-        <span
+       {(item.type <3) &&  <span
           class="  text-gray-400 text-sm mt-2"
-        >{item.type === 1 ? "Power" : "Storage(GBs)"} : {item.power}</span>
+        >{ item.type === 1 ? "Power" : "Storage(GBs)"} : {item.power}</span>}
       </div>
       <div class="col-span-2 ">
         <div class="flex items-center space-x-2 text-sm justify-between">
