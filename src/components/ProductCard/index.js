@@ -24,7 +24,7 @@ function ProductCard(props) {
             class="w-full btn btn-primary"
             style={{ borderRadius: 0 }}
           >
-            Add To Cart
+            Product Detail
           </button>
         </div>
       </div>
