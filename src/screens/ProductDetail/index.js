@@ -178,9 +178,7 @@ function ProductDetail() {
                     type="number"
                     placeholder="Quantity"
                     class="input input-bordered"
-                    disabled={
-                      (power === null) || ! (option!==null && (option['power'] ===undefined && option['storage'] === undefined)) 
-                    }
+                    
                     value={quantity}
                     onChange={(e) => {
                       if(e.target.value <= option.quantity){
